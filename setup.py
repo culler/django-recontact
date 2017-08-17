@@ -62,7 +62,7 @@ class Release(Command):
 from recontact import __version__
 
 setup(
-    name='recontact',
+    name='django-recontact',
     version=__version__,
     description='Django contact application with invisible recaptcha',
     long_description=long_description,
