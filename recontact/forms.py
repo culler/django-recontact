@@ -6,13 +6,13 @@ class RecontactForm(Form):
     """
     sender = CharField(label='', widget=TextInput(
         attrs={'placeholder': 'Your Name',
-               'class': 'big'}))
+               'class': 'recontact'}))
     reply_to=EmailField(label='', widget=EmailInput(
         attrs={'placeholder': 'Your email address',
-               'class': 'big'}))
+               'class': 'recontact'}))
     subject = CharField(label='', widget=TextInput(
         attrs={'placeholder': 'Subject',
-               'class': 'big'}))
+               'class': 'recontact'}))
     message = CharField(label='', widget=Textarea(
         attrs={'placeholder': 'Message',
-               'class': 'big'}))
+               'class': 'recontact'}))
