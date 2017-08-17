@@ -51,8 +51,11 @@ class Release(Command):
         for dir in ['build', 'dist', html]:
             if os.path.exists(dir):
                 shutil.rmtree(dir)
-
-        check_call([python, 'setup.py', 'build_sphinx'])
+        sphinx_env = {
+            'PYTHONPATH': os.path.abspath('example'),
+            'DJANGO_SETTINGS_MODULE': 'example.settings'
+            }
+        check_call([python, 'setup.py', 'build_sphinx'], env=sphinx_env)
         check_call([python, 'setup.py', 'bdist_wheel'])
         check_call([python, 'setup.py', 'sdist'])
 

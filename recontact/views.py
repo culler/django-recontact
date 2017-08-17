@@ -3,7 +3,6 @@ from django.core.mail import EmailMessage
 from django.views.generic.base import View, TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.conf import settings
 from .forms import RecontactForm
 
 recontact_attrs = {
@@ -14,9 +13,17 @@ recontact_attrs = {
     'site_key': '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 }
 
-recontact_attrs.update(settings.RECONTACT_CONFIG)
+try:
+    from django.conf import settings
+    recontact_attrs.update(settings.RECONTACT_CONFIG)
+except:
+    pass
 
 class RecontactView(View):
+    """
+    A class based view which sends a contact email message and then
+    redirects to an acknowledgement page.
+    """
     template_name = recontact_attrs['template_name']
     confirmation_template_name = recontact_attrs['confirmation_template_name']
     addresses = recontact_attrs['addresses']
