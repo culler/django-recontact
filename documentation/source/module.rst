@@ -10,7 +10,7 @@ Installation
 
 Install with pip::
 
-$ python3 -m pip install django-recontact.
+$ python3 -m pip install django-recontact
 
 Example
 -------
@@ -107,11 +107,12 @@ Forms
 
 .. automodule:: recontact.forms
    :members:
+      RecontactForm
 
 Views
 -----
 
 .. automodule:: recontact.views
    :members:
-
+      RecontactView
 
