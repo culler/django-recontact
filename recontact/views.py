@@ -11,6 +11,7 @@ recontact_attrs = {
     'addresses': ['postmaster@localhost'],
     'extra_context': {},
     'query': 'Recontact query:',
+    'allow_click_bait': False,
     'site_key': '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 }
 
@@ -31,7 +32,7 @@ class RecontactView(View):
     extra_context = recontact_attrs['extra_context']
     query = recontact_attrs['query']
     site_key = recontact_attrs['site_key']
-    
+
     def post(self, request, *args, **kwargs):
         form = RecontactForm(data=request.POST)
         context= self._get_extra_context(request, *args, **kwargs)
