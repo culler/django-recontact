@@ -56,6 +56,7 @@ example, shows the default values of all of the parameters::
       'confirmation_template_name': 'recontact/message_sent.html',
       'addresses': ['postmaster@localhost'],
       'extra_context': {},
+      'allow_click_bait': False,
       'query': 'Recontact query:',
       'site_key': '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
   }
@@ -81,6 +82,20 @@ no styling.  You will want to modify these to your taste.  The first
 template manages a form which sends the contact email.  The second
 simply informs the user that a message has been sent.  You should use
 the first two dict entries to specify the locations of your templates.
+
+Unfortunately, the google recaptcha is not that hard to defeat, and
+there are many bots available which can send messages through a
+contact page protected by a recaptcha.  There may even be humans who
+find it worthwhile to paste messages into contact pages. The vast
+majority of the spam messages received by a contact page contain a
+short come-on message and a link.  Presumably the link belongs to a
+pay-per-click advertiser from whom the spammer is hoping to collect
+payments.  For this reason, django-recaptcha, by default, will not
+validate fields containing urls.  This makes the contact page useless
+to a click-bait spammer, while still allowing someone who is actually
+interested in contacting you to do so.  However, if you really want to
+receive messages containing URLs then you can set the allow_click_bait
+option to True in the configration.
 
 The 'query' value is used to generate the subject line of the contact
 email, which also contains the name provided on the contact form.  You
