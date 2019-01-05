@@ -1,7 +1,7 @@
 from django.forms import Form, CharField, EmailField, Textarea, TextInput, EmailInput
 from django.core.validators import RegexValidator
 
-NoClickBait = RegexValidator(regex="https?://",
+NoClickBait = RegexValidator(regex='https?:|[A-z]+\.[A-z]+',
                              message='Please remove all URLs.',
                              inverse_match=True)
 
