@@ -24,7 +24,9 @@ class RecontactForm(Form):
         validators=recontact_validators)
 
     reply_to = EmailField(label='', widget=EmailInput(
-        attrs={'placeholder': 'Your email address', 'class': 'recontact'}))
+        attrs={'placeholder': 'Your email address',
+               'required': 'required',
+               'class': 'recontact'}))
 
     subject = CharField(label='', widget=TextInput(
         attrs={'placeholder': 'Subject', 'class': 'recontact'}),

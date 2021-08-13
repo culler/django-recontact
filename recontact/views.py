@@ -39,14 +39,15 @@ class RecontactView(View):
         if form.is_valid():
             subject = request.POST.get('subject', 'spam')
             sender = request.POST.get('sender', 'unknown')
-            reply_to = request.POST.get('reply_to', '<>')
+            reply_to = request.POST.get('reply_to', '')
             message = request.POST.get('message', '')
-            body = 'Message received from %s:\n\n%s'%(sender, message)
+            body = 'Message received from %s <%s>:\n\n%s'%(
+                sender, reply_to, message)
             email = EmailMessage(
                 subject='%s %s'%(self.query, subject),
                 to=self._get_addresses(request, *args, **kwargs),
                 body=body,
-                headers = {'Reply-To': reply_to}
+                headers = {'Reply-To': reply_to} if reply_to else {}
             )
             email.send()
             return HttpResponseRedirect(request.META['HTTP_REFERER'] + 'sent/')
