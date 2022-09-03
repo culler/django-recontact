@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 from .views import RecontactView
 
 urlpatterns = [
-    url(r'^$', RecontactView.as_view(), name='recontact_base'),
-    url(r'^(?P<sent>sent)/$', RecontactView.as_view(), name='recontact_sent'),
+    path('', RecontactView.as_view(), name='recontact_base'),
+    path('sent/', RecontactView.as_view(), name='recontact_sent'),
 
 ]
