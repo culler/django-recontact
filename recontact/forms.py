@@ -4,8 +4,11 @@ from django.core.validators import RegexValidator
 NoClickBait = RegexValidator(regex='https?:|[A-z]+\.[A-z]+',
                              message='Please remove all URLs.',
                              inverse_match=True)
+NoEmails = RegexValidator(regex='@',
+                             message='Please remove email addresses and social media handles.',
+                             inverse_match=True)
 
-recontact_validators = [NoClickBait]
+recontact_validators = [NoClickBait, NoEmails]
 
 try:
     from django.conf import settings
